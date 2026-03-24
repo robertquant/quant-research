@@ -62,12 +62,12 @@ class ETFRotationStrategyV4:
         self.stop_loss = stop_loss
         self.position_size = position_size
         
-        # ETF标的池
+        # ETF标的池 - 4只宽基（效果最好的配置）
         self.etfs = {
             'sh510300': '沪深300ETF',
             'sh510500': '中证500ETF',
             'sz159915': '创业板ETF',
-            'sh588000': '科创50ETF'
+            'sh588000': '科创50ETF',
         }
         
         self.market_etf = 'sh510300'
@@ -343,12 +343,12 @@ class ETFRotationStrategyV4:
 
 def main():
     """主函数"""
-    # 使用改进的参数
+    # 使用改进的参数，回测到2026年
     strategy = ETFRotationStrategyV4(
         start_date='20150101',      # 从2015年开始
-        end_date='20241231',
-        momentum_window=30,          # 30日动量（比20日更稳健）
-        market_filter_window=60,     # 60日均线过滤（比20日更宽松）
+        end_date='20260324',        # 到2026年3月24日（今天）
+        momentum_window=30,          # 30日动量
+        market_filter_window=60,     # 60日均线过滤
         stop_loss=-0.08              # -8%硬止损
     )
     
